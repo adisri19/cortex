@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { BannerHeroBlock } from '../../types';
 import { useTheme } from '../../context/ThemeContext';
@@ -11,7 +11,6 @@ interface BannerHeroProps {
 
 const BannerHero: React.FC<BannerHeroProps> = React.memo(({ block }) => {
   const theme = useTheme();
-  const width = Dimensions.get('window').width;
   const [imgUrl, setImgUrl] = useState(block.image_url);
 
   const handlePress = () => {
@@ -21,8 +20,8 @@ const BannerHero: React.FC<BannerHeroProps> = React.memo(({ block }) => {
   // Memoized styles to satisfy performance rules
   const containerStyle = useMemo(() => [
     styles.container,
-    { width, height: 200 }
-  ], [width]);
+    { width: '100%', height: 200 }
+  ], []);
 
   const ctaStyle = useMemo(() => [
     styles.cta,
